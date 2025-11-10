@@ -4,7 +4,11 @@
 NCD-RisC ANALYSIS PROJECT: Surprising Patterns in Global Diabetes
 ================================================================
 
-Author: [Your Name]
+Author: Kartikey Sharma (ID: 250559280)
+        Aman Rana (ID: 250480674)
+        Pratik Pathe (ID: 250580169)
+        Kartik Sharma (ID: 250356977)
+
 Date: November 2025
 Course: MAS8600/MAS8505
 
@@ -213,8 +217,13 @@ CONTACT
 ================================================================
 
 For questions about this analysis:
-[Your Name]
-[Your Email]
-[Course Information]
+
+Kartikey Sharma (ID: 250559280)
+Aman Rana (ID: 250480674)
+Pratik Pathe (ID: 250580169)
+Kartik Sharma (ID: 250356977)
+
+[Email: k.sharma3@newcastle.ac.uk]
+
 
 ================================================================
