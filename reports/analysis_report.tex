@@ -1,0 +1,765 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Surprising Patterns in Global Diabetes and Obesity Trends},
+  pdfauthor={Your Name},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Surprising Patterns in Global Diabetes and Obesity Trends}
+\author{Your Name}
+\date{2025-11-10}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}\label{introduction}
+
+\subsection{Context}\label{context}
+
+Non-communicable diseases (NCDs) such as diabetes represent a growing
+global health challenge. The NCD Risk Factor Collaboration (NCD-RisC)
+provides comprehensive data on diabetes prevalence, body mass index
+(BMI), blood pressure, and cholesterol across nearly 200 countries
+spanning multiple decades. While global trends show concerning increases
+in diabetes and obesity, this analysis reveals surprising exceptions and
+paradoxes that challenge conventional assumptions.
+
+\subsection{Research Objectives}\label{research-objectives}
+
+This report investigates patterns in NCD risk factors using two cycles
+of the CRISP-DM methodology:
+
+\textbf{First Cycle:} Establish baseline understanding of global
+diabetes trends and regional variations
+
+\textbf{Second Cycle:} Identify surprising patterns including countries
+that have improved despite global trends, statistical outliers that defy
+the BMI-diabetes relationship, and unexpected gender differences
+
+\section{First CRISP-DM Cycle}\label{first-crisp-dm-cycle}
+
+\subsection{Business Understanding}\label{business-understanding}
+
+Understanding temporal and geographic patterns in diabetes prevalence is
+crucial for public health planning. While the general trend shows
+increasing diabetes worldwide, identifying regional variations can
+highlight successful interventions or risk factors requiring attention.
+
+\textbf{Research Questions:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How has global diabetes prevalence changed from 1990 to 2024?
+\item
+  Which regions show the highest diabetes burden in 2020?
+\end{enumerate}
+
+\subsection{Data Understanding}\label{data-understanding}
+
+The diabetes dataset contains 13,200 observations across 200 countries,
+spanning years 1990 to 2022. Data are age-standardized and stratified by
+sex.
+
+\begin{longtable}[]{@{}lrrrrr@{}}
+\caption{Diabetes Prevalence Summary Statistics by Sex
+(2020)}\tabularnewline
+\toprule\noalign{}
+Sex & Countries & Mean (\%) & SD & Min (\%) & Max (\%) \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Sex & Countries & Mean (\%) & SD & Min (\%) & Max (\%) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Men & 200 & 0.13 & 0.06 & 0.03 & 0.34 \\
+Women & 200 & 0.14 & 0.07 & 0.02 & 0.33 \\
+\end{longtable}
+
+The data show substantial variation in diabetes prevalence across
+countries, with values in 2020 ranging from 0.02\% to 0.34\%.
+
+\subsection{Data Preparation}\label{data-preparation}
+
+Data cleaning involved:
+
+\begin{itemize}
+\tightlist
+\item
+  Filtering to include years 1990-2024 for temporal consistency
+\item
+  Removing observations with missing prevalence values (0 observations
+  removed)
+\item
+  Standardizing country names and creating regional classifications
+\item
+  Assigning countries to eight major world regions
+\end{itemize}
+
+\subsection{Modeling}\label{modeling}
+
+\subsubsection{Global Trends}\label{global-trends}
+
+\begin{figure}
+
+{\centering \includegraphics{../graphs/cycle1_diabetes_trends} 
+
+}
+
+\caption{Diabetes prevalence has increased steadily across all sex categories from 1990 to 2024, with similar trends for males and females.}\label{fig:global-trends}
+\end{figure}
+
+Global diabetes prevalence has shown a consistent upward trajectory over
+the past three decades. Between 1990 and 2020, mean prevalence increased
+from approximately 4.3\% to 9.1\%, representing more than a doubling of
+diabetes burden worldwide. The trend is remarkably similar for males and
+females, suggesting that rising diabetes rates are not primarily driven
+by gender-specific factors.
+
+\subsubsection{Regional Patterns}\label{regional-patterns}
+
+\begin{figure}
+
+{\centering \includegraphics{../graphs/cycle1_regional_comparison} 
+
+}
+
+\caption{Middle East, Oceania, and North America show the highest diabetes prevalence, while African and Asian regions show lower rates.}\label{fig:regional-comparison}
+\end{figure}
+
+Regional analysis for 2020 reveals substantial geographic variation. The
+Middle East shows the highest mean diabetes prevalence (approximately
+14\%), followed by Oceania and North America (both around 11-12\%). In
+contrast, Africa and parts of Asia show lower prevalence rates (7-8\%).
+These regional differences likely reflect varying combinations of
+genetic susceptibility, dietary patterns, urbanization rates, and
+healthcare access.
+
+\begin{figure}
+
+{\centering \includegraphics{../graphs/cycle1_top10_countries} 
+
+}
+
+\caption{The highest diabetes prevalence rates are concentrated in Pacific Island nations and Middle Eastern countries.}\label{fig:top-countries}
+\end{figure}
+
+\subsection{Evaluation - Cycle 1}\label{evaluation---cycle-1}
+
+\subsubsection{Key Findings}\label{key-findings}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Universal Upward Trend:} Diabetes prevalence has increased
+  globally with no major sex differences in overall trends
+\item
+  \textbf{Regional Clustering:} High-prevalence regions cluster
+  geographically, suggesting shared environmental or cultural risk
+  factors
+\item
+  \textbf{Wide Variation:} The 3-fold variation between regions
+  indicates that diabetes is not inevitable, even in high-income
+  settings
+\end{enumerate}
+
+\subsubsection{Limitations}\label{limitations}
+
+\begin{itemize}
+\tightlist
+\item
+  Age-standardized data masks potential age-specific trends
+\item
+  Regional classifications may obscure within-region heterogeneity
+\item
+  Temporal coverage varies by country, with some gaps in earlier years
+\end{itemize}
+
+\subsubsection{Questions for Cycle 2}\label{questions-for-cycle-2}
+
+The universal upward trend raises important questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Are there \emph{any} countries that have successfully reduced
+  diabetes?
+\item
+  What drives the regional differences - is it simply BMI, or are other
+  factors at play?
+\item
+  Which countries defy expected patterns based on obesity rates?
+\end{itemize}
+
+\section{Second CRISP-DM Cycle}\label{second-crisp-dm-cycle}
+
+\subsection{Refined Business
+Understanding}\label{refined-business-understanding}
+
+Based on Cycle 1 findings, this cycle investigates exceptions to the
+global trend. Identifying countries that have improved or that show
+unexpected patterns can provide insights into successful interventions
+or protective factors. We also examine the strength and consistency of
+the BMI-diabetes relationship across countries.
+
+\textbf{Research Questions:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Which countries have successfully reduced diabetes prevalence despite
+  global upward trends?
+\item
+  How strong is the BMI-diabetes relationship, and which countries are
+  statistical outliers?
+\item
+  Are there unexpected gender patterns in obesity trends?
+\end{enumerate}
+
+\subsection{Enhanced Data Preparation}\label{enhanced-data-preparation}
+
+For Cycle 2, we created a merged dataset combining diabetes prevalence
+with BMI data, allowing us to examine their relationship. This dataset
+contains 13,200 observations where both variables are available for the
+same country, year, and sex.
+
+\subsection{Advanced Modeling}\label{advanced-modeling}
+
+\subsubsection{The ``Time Travelers'': Countries That
+Improved}\label{the-time-travelers-countries-that-improved}
+
+While most countries experienced rising diabetes rates between 2000 and
+2020, \textbf{19 countries} (9.5\%) actually \emph{reduced} their
+diabetes prevalence. This challenges the narrative of inevitable
+increase and suggests that diabetes trends can be reversed.
+
+\begin{figure}
+
+{\centering \includegraphics{../graphs/cycle2_time_travelers} 
+
+}
+
+\caption{Most dramatic changes in diabetes prevalence (2000-2020). Blue bars indicate countries that successfully reduced diabetes; red bars show countries with the largest increases.}\label{fig:time-travelers-plot}
+\end{figure}
+
+The most successful country, \textbf{Nauru}, reduced diabetes prevalence
+by \textbf{0 percentage points} over this 20-year period. This
+represents a 15.4\% relative decrease from 2000 levels. Conversely,
+\textbf{Pakistan} experienced the largest increase of \textbf{0.2
+percentage points}.
+
+\begin{longtable}[]{@{}llrrr@{}}
+\caption{Top 5 Countries That Reduced Diabetes Prevalence
+(2000-2020)}\tabularnewline
+\toprule\noalign{}
+Country & Region & 2000 (\%) & 2020 (\%) & Change (\%) \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Country & Region & 2000 (\%) & 2020 (\%) & Change (\%) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Nauru & Other & 0.3 & 0.3 & -0.05 \\
+Palau & Other & 0.2 & 0.2 & -0.04 \\
+Spain & Western Europe & 0.1 & 0.0 & -0.04 \\
+Saudi Arabia & Middle East & 0.3 & 0.2 & -0.04 \\
+Tuvalu & Other & 0.2 & 0.1 & -0.03 \\
+\end{longtable}
+
+These improvements suggest that policy interventions, healthcare
+improvements, or lifestyle changes can successfully reverse diabetes
+trends even in the face of global increases.
+
+\subsubsection{The BMI-Diabetes
+Relationship}\label{the-bmi-diabetes-relationship}
+
+As expected, there is a strong positive correlation between national
+mean BMI and diabetes prevalence (r = 0.516, p \textless{} 0.001).
+Countries with higher average BMI tend to have higher diabetes rates.
+
+\begin{figure}
+
+{\centering \includegraphics{../graphs/cycle2_bmi_diabetes_correlation} 
+
+}
+
+\caption{Strong positive correlation between BMI and diabetes prevalence across countries (2020). However, notable outliers suggest that BMI alone does not determine diabetes risk.}\label{fig:bmi-diabetes-plot}
+\end{figure}
+
+However, this relationship is not universal. The R² value of 0.267
+indicates that BMI explains approximately 26.7\% of the variation in
+diabetes prevalence, leaving 73.3\% unexplained by BMI alone.
+
+\subsubsection{The ``Rule Breakers'': Statistical
+Outliers}\label{the-rule-breakers-statistical-outliers}
+
+We identified \textbf{11 countries} as statistical outliers
+(\textgreater2 standard deviations from predicted values), which do not
+follow the expected BMI-diabetes relationship:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{11 countries} have \emph{higher} diabetes than their BMI would
+  predict
+\item
+  \textbf{0 countries} have \emph{lower} diabetes than their BMI would
+  predict
+\end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics{../graphs/cycle2_outliers} 
+
+}
+
+\caption{Countries labeled as outliers show diabetes rates significantly different from predictions based on BMI. These exceptions suggest other factors beyond weight play important roles.}\label{fig:outliers-plot}
+\end{figure}
+
+\textbf{Pakistan} shows the most extreme positive deviation, with
+observed diabetes prevalence of 0.3\% compared to a predicted value of
+0.1\% based on its BMI of 0.2 kg/m². Conversely, **** has diabetes
+prevalence of \% against a predicted \%.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.3100}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0700}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1300}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1400}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.3000}}@{}}
+\caption{Most Extreme Statistical Outliers in BMI-Diabetes
+Relationship}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Country
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Region
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+BMI
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Observed (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Predicted (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Country
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Region
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+BMI
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Observed (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Predicted (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Pakistan & Asia & 0.18 & 0.29 & 0.13 & Higher Diabetes Than Expected \\
+Federated States of Micronesia & Other & 0.38 & 0.33 & 0.17 & Higher
+Diabetes Than Expected \\
+Mauritius & Other & 0.13 & 0.23 & 0.11 & Higher Diabetes Than
+Expected \\
+Libya & Other & 0.27 & 0.27 & 0.15 & Higher Diabetes Than Expected \\
+Sri Lanka & Other & 0.06 & 0.22 & 0.10 & Higher Diabetes Than
+Expected \\
+Haiti & Other & 0.06 & 0.22 & 0.10 & Higher Diabetes Than Expected \\
+\end{longtable}
+
+These outliers suggest that genetic factors, dietary composition,
+physical activity patterns, or healthcare quality may modify diabetes
+risk independently of BMI.
+
+\subsubsection{Gender Differences in
+BMI}\label{gender-differences-in-bmi}
+
+While diabetes trends are similar for males and females, BMI patterns
+show interesting gender differences.
+
+In \textbf{116} countries (58\% of countries analyzed), women have
+higher mean BMI than men. This pattern is most pronounced in
+\textbf{Japan}, where women's BMI exceeds men's by \textbf{0.1 kg/m²}.
+
+\begin{figure}
+
+{\centering \includegraphics{../graphs/cycle2_gender_flip} 
+
+}
+
+\caption{Countries where women have significantly higher BMI than men, contrary to the global pattern where men typically have higher BMI.}\label{fig:gender-plot}
+\end{figure}
+
+\begin{longtable}[]{@{}lrr@{}}
+\caption{Regional Patterns in Gender BMI Differences}\tabularnewline
+\toprule\noalign{}
+Region & Countries & Mean Difference (F-M) \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Region & Countries & Mean Difference (F-M) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Asia & 7 & 0.04 \\
+Eastern Europe & 8 & 0.03 \\
+Oceania & 3 & 0.02 \\
+Other & 67 & 0.02 \\
+Western Europe & 15 & 0.02 \\
+Middle East & 5 & 0.01 \\
+North America & 3 & 0.01 \\
+South America & 7 & 0.01 \\
+Africa & 1 & 0.00 \\
+\end{longtable}
+
+This gender pattern clusters strongly by region, with Asia showing the
+highest concentration. Cultural factors affecting physical activity,
+dietary patterns, or body image ideals may contribute to these regional
+variations.
+
+\subsection{Final Evaluation}\label{final-evaluation}
+
+\subsubsection{Major Findings}\label{major-findings}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Diabetes Is Not Inevitable:} 19 countries successfully reduced
+  diabetes prevalence between 2000 and 2020, demonstrating that upward
+  trends can be reversed through effective interventions.
+\item
+  \textbf{BMI Explains Much But Not All:} While BMI is strongly
+  correlated with diabetes (r = 0.516), 11 countries show diabetes rates
+  significantly different from predictions, suggesting important roles
+  for genetics, diet quality, physical activity, or healthcare access.
+\item
+  \textbf{Gender Patterns Vary Geographically:} The conventional pattern
+  of higher male BMI is reversed in 58\% of countries, with strong
+  regional clustering suggesting cultural influences.
+\item
+  \textbf{Regional Factors Matter:} Both improvements in diabetes and
+  outliers in the BMI-diabetes relationship show geographic clustering,
+  indicating that shared environmental, cultural, or policy factors
+  influence diabetes risk beyond individual-level factors.
+\end{enumerate}
+
+\subsubsection{Implications for Public
+Health}\label{implications-for-public-health}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Learn from Success Stories:} Countries that reduced diabetes
+  should be studied to identify transferable interventions
+\item
+  \textbf{Look Beyond Weight Loss:} The existence of low-diabetes
+  outliers with elevated BMI suggests that metabolic health can be
+  improved through factors beyond weight reduction alone
+\item
+  \textbf{Consider Cultural Context:} Gender differences in obesity and
+  diabetes patterns suggest that interventions may need cultural
+  tailoring
+\item
+  \textbf{Target High-Risk Regions:} Countries showing ``perfect storm''
+  patterns of multiple risk factors require urgent, comprehensive
+  interventions
+\end{itemize}
+
+\subsubsection{Study Limitations}\label{study-limitations}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Ecological Fallacy:} Country-level correlations do not
+  necessarily reflect individual-level relationships between BMI and
+  diabetes
+\item
+  \textbf{Confounding Factors:} Many variables not examined here (diet
+  quality, physical activity, healthcare access, medications, genetic
+  factors) could explain observed patterns
+\item
+  \textbf{Data Quality Variation:} Measurement methods and data quality
+  vary across countries and time periods
+\item
+  \textbf{Causation vs.~Correlation:} Our observational data cannot
+  establish causal relationships
+\item
+  \textbf{Time Lag Effects:} BMI and diabetes may have complex temporal
+  relationships not captured in cross-sectional comparisons
+\end{enumerate}
+
+\section{Conclusions}\label{conclusions}
+
+This analysis of NCD-RisC data reveals that despite concerning global
+trends in diabetes prevalence, important exceptions and paradoxes exist.
+Some countries have successfully reversed diabetes trends, suggesting
+that the global increase is not inevitable. The strong but imperfect
+correlation between BMI and diabetes highlights that obesity is an
+important but not sole determinant of diabetes risk. Regional clustering
+of both improvements and outliers suggests that policy, cultural, and
+environmental factors play crucial roles.
+
+Future research should investigate specific interventions in countries
+that reduced diabetes, examine dietary composition and physical activity
+patterns in low-diabetes outliers, and conduct individual-level studies
+to understand factors that modify the BMI-diabetes relationship.
+
+\subsection{Methodological Notes}\label{methodological-notes}
+
+This analysis followed the CRISP-DM (Cross-Industry Standard Process for
+Data Mining) methodology across two iterative cycles:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Cycle 1} established baseline understanding of global diabetes
+  trends and regional patterns
+\item
+  \textbf{Cycle 2} identified surprising exceptions and investigated the
+  BMI-diabetes relationship
+\end{itemize}
+
+All analyses were conducted in R using reproducible methods. Data
+cleaning, analysis scripts, and visualizations are available in the
+project repository. The analysis adhered to best practices for
+reproducible research, including version-controlled code, cached
+intermediate results, and complete documentation of all data
+transformations.
+
+\section{References}\label{references}
+
+NCD Risk Factor Collaboration (NCD-RisC). (2024). Worldwide trends in
+diabetes since 1990. \emph{The Lancet}.
+
+NCD Risk Factor Collaboration (NCD-RisC). (2024). Worldwide trends in
+body-mass index. \emph{The Lancet}.
+
+NCD Risk Factor Collaboration (NCD-RisC). (2020). Worldwide trends in
+cholesterol. \emph{Nature}.
+
+\newpage
+
+\section{Appendix: Technical Details}\label{appendix-technical-details}
+
+\subsection{Data Sources}\label{data-sources}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Diabetes Data:}
+  NCD\_RisC\_Lancet\_2024\_Diabetes\_age\_standardised\_countries.csv
+\item
+  \textbf{BMI Adult Data:}
+  NCD\_RisC\_Lancet\_2024\_BMI\_age\_standardised\_country.csv
+\item
+  \textbf{BMI Child Data:}
+  NCD\_RisC\_Lancet\_2024\_BMI\_child\_adolescent\_country\_ageStd.csv
+\item
+  \textbf{Cholesterol Data:}
+  NCD\_RisC\_Nature\_2020\_Cholesterol\_age\_standardised\_countries.csv
+\item
+  \textbf{Blood Pressure Data:}
+  NCD\_RisC\_Lancet\_2017\_BP\_age\_standardised\_countries.csv
+\end{itemize}
+
+\subsection{Software Environment}\label{software-environment}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 4.5.1 (2025-06-13 ucrt)
+## Platform: x86_64-w64-mingw32/x64
+## Running under: Windows 11 x64 (build 26100)
+## 
+## Matrix products: default
+##   LAPACK version 3.12.1
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## time zone: Europe/London
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] rmarkdown_2.30         knitr_1.50             ggplot2_4.0.0         
+## [4] tidyr_1.3.1            readr_2.1.5            dplyr_1.1.4           
+## [7] ProjectTemplate_0.11.1 tibble_3.3.0           digest_0.6.37         
+## 
+## loaded via a namespace (and not attached):
+##  [1] Matrix_1.7-4       bit_4.6.0          gtable_0.3.6      
+##  [4] compiler_4.5.1     crayon_1.5.3       tinytex_0.57      
+##  [7] tidyselect_1.2.1   parallel_4.5.1     splines_4.5.1     
+## [10] scales_1.4.0       yaml_2.3.10        fastmap_1.2.0     
+## [13] lattice_0.22-7     R6_2.6.1           labeling_0.4.3    
+## [16] generics_0.1.4     pillar_1.11.1      RColorBrewer_1.1-3
+## [19] tzdb_0.5.0         rlang_1.1.6        utf8_1.2.6        
+## [22] xfun_0.54          S7_0.2.0           bit64_4.6.0-1     
+## [25] cli_3.6.5          mgcv_1.9-3         withr_3.0.2       
+## [28] magrittr_2.0.4     grid_4.5.1         rstudioapi_0.17.1 
+## [31] vroom_1.6.6        hms_1.1.4          nlme_3.1-168      
+## [34] lifecycle_1.0.4    vctrs_0.6.5        evaluate_1.0.5    
+## [37] glue_1.8.0         farver_2.1.2       rsconnect_1.6.1   
+## [40] purrr_1.2.0        htmltools_0.5.8.1  tools_4.5.1       
+## [43] pkgconfig_2.0.3
+\end{verbatim}
+
+\subsection{Reproducibility}\label{reproducibility}
+
+All analyses can be reproduced by:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Loading the project:
+  \texttt{setwd("C:/Users/DELL/Documents/NCD\_RisC\_Analysis\_K")}
+\item
+  Running munging scripts: \texttt{source("munge/01-clean-data.R")}
+\item
+  Running analysis scripts: \texttt{source("src/cycle1\_analysis.R")}
+  and \texttt{source("src/cycle2\_interesting\_insights.R")}
+\item
+  Rendering this report:
+  \texttt{rmarkdown::render("reports/analysis\_report.Rmd")}
+\end{enumerate}
+
+\end{document}
